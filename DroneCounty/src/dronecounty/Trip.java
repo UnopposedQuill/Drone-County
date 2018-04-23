@@ -2,6 +2,7 @@ package dronecounty;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class Trip {
     private Nodo origin;
@@ -17,8 +18,16 @@ public class Trip {
         return origin;
     }
 
+    public ArrayList<Nodo> getRoute() {
+        return route;
+    }
+
     public Nodo getDestination() {
         return destination;
+    }
+
+    public void setRoute(ArrayList<Nodo> route) {
+        this.route = route;
     }
 
     public int getTrack() {
@@ -67,5 +76,12 @@ public class Trip {
 
     public void setEndingTime(Date endingTime) {
         this.endingTime = endingTime;
+
+    }
+
+    public void setDijkstra(ArrayList<Nodo> pGraph){
+        ArrayList<Nodo> listOfNodes = new ArrayList<>();
+        //listOfNodes = Dijkstra.getBestRoute(pGraph, this.origin ,this.destination);
+        this.setRoute(listOfNodes);
     }
 }
