@@ -78,9 +78,11 @@ public class Trip {
         this.endingTime = endingTime;
     }
 
-    public void setDijkstra(ArrayList<Nodo> pGraph){
+    public void setDijkstra(Graph pGraph){
+        Dijkstra vDijkstra = new Dijkstra(pGraph);
         ArrayList<Nodo> listOfNodes = new ArrayList<>();
-        //listOfNodes = Dijkstra.getBestRoute(pGraph, this.origin ,this.destination);
+        d.excecute(this.origin);
+        listOfNodes = vDijkstra.getPath(this.destination);
         this.setRoute(listOfNodes);
     }
 }
