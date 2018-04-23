@@ -65,5 +65,29 @@ public class DroneCounty {
         d.execute(v1);
         ArrayList<Vertex> path = d.getPath(v6);
         path.forEach((vertex) -> {System.out.println(vertex);});
+
+    }
+
+    public static ArrayList<Trip> setJourney(int pNumberOfTrips, ArrayList<Vertex> pGraph){
+        int numberOfNodes = pGraph.size();
+        int randNumber;
+        Random rand = new Random();
+        ArrayList<Trip> tripList = new ArrayList<>();
+
+        for(int nTrip=0; nTrip < pNumberOfTrips; nTrip++){
+            Trip objTrip = new Trip();
+
+            randNumber = rand.nextInt(numberOfNodes);
+            objTrip.setOrigin(pGraph.get(randNumber));
+
+            randNumber = rand.nextInt(numberOfNodes);
+            objTrip.setDestination(pGraph.get(randNumber));
+
+            //objTrip.setDijkstra();
+
+            tripList.add(objTrip);
+        }
+
+        return tripList;
     }
 }
