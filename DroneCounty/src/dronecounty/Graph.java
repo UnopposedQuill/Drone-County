@@ -16,13 +16,13 @@ public class Graph<T>{
     private final HashSet<Vertex<T>> vertexes;
     private final HashSet<Edge> edges;
 
-    public Graph(HashSet<Vertex<T>> vertexes, HashSet<Edge> edges) {
-        this.vertexes = vertexes;
-        this.edges = edges;
+    public Graph() {
+        this.vertexes = new HashSet<>();
+        this.edges = new HashSet<>();
     }
     
     public boolean addVertex(Vertex<T>vertex){
-        return this.addVertex(vertex);
+        return this.vertexes.add(vertex);
     }
     
     public boolean addEdge(Vertex<T> vertex1, Vertex<T> vertex2, double weight){

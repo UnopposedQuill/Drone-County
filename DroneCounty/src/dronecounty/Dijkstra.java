@@ -110,7 +110,7 @@ public class Dijkstra {
      * NULL if no path exists
      */
     public LinkedList<Vertex> getPath(Vertex target) {
-        LinkedList<Vertex> path = new LinkedList<Vertex>();
+        LinkedList<Vertex> path = new LinkedList<>();
         Vertex step = target;
         // check if a path exists
         if (predecessors.get(step) == null) {

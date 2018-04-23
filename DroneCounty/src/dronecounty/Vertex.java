@@ -45,5 +45,8 @@ public class Vertex<T>{
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Vertex {" + objectInside + '}';
+    }
 }
