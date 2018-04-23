@@ -5,6 +5,7 @@ import java.util.Date;
 public class Trip {
     private Nodo Origin;
     private Nodo Destination;
+    private <ArrayList> Nodo Road;
     private int track;
     private int height;
     private int xPosition;
