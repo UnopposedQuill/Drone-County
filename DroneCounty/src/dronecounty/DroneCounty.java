@@ -89,5 +89,19 @@ public class DroneCounty {
         }
 
         return tripList;
+        //initGraphNodes(5);
+    }
+   
+    public static ArrayList<Vertex> initGraphNodes(int quantity, ArrayList<Vertex> nodeList){
+        Random rand = new Random();
+        ArrayList<Vertex> nodeListFinal = new ArrayList<>();
+        for(int i = 0; i<quantity; i++){
+            int  n = rand.nextInt(30) + 0;
+            Vertex temporaryNode = nodeList.get(n);
+            if (!nodeListFinal.contains(temporaryNode)){
+                nodeListFinal.add(temporaryNode);
+            }
+        }
+        return nodeListFinal;
     }
 }
