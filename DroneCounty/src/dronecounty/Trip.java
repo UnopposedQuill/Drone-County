@@ -1,11 +1,12 @@
 package dronecounty;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Trip {
-    private Nodo Origin;
-    private Nodo Destination;
-    private <ArrayList> Nodo Road;
+    private Nodo origin;
+    private Nodo destination;
+    private ArrayList<Nodo> route;
     private int track;
     private int height;
     private int xPosition;
@@ -13,11 +14,11 @@ public class Trip {
     private Date endingTime;
 
     public Nodo getOrigin() {
-        return Origin;
+        return origin;
     }
 
     public Nodo getDestination() {
-        return Destination;
+        return destination;
     }
 
     public int getTrack() {
@@ -40,12 +41,12 @@ public class Trip {
         return endingTime;
     }
 
-    public void setOrigin(Nodo origin) {
-        Origin = origin;
+    public void setOrigin(Nodo pOrigin) {
+        origin = pOrigin;
     }
 
-    public void setDestination(Nodo destination) {
-        Destination = destination;
+    public void setDestination(Nodo Pddestination) {
+        destination = destination;
     }
 
     public void setTrack(int track) {
