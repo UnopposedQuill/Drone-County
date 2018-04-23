@@ -8,7 +8,7 @@ package dronecounty;
 /**
  *
  * @author Elias
- * @param <T>
+ * Test commit
  */
 public class Drone{
     public final int HEIGHT = 3;
