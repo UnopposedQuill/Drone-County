@@ -8,7 +8,7 @@ public class Trip {
     private Nodo origin;
     private Nodo destination;
     private ArrayList<Nodo> route;
-    private int track;
+    private Track track;
     private int height;
     private int xPosition;
     private Date initialTime;
@@ -30,7 +30,7 @@ public class Trip {
         this.route = route;
     }
 
-    public int getTrack() {
+    public Track getTrack() {
         return track;
     }
 
@@ -58,7 +58,7 @@ public class Trip {
         destination = destination;
     }
 
-    public void setTrack(int track) {
+    public void setTrack(Track track) {
         this.track = track;
     }
 
@@ -76,7 +76,6 @@ public class Trip {
 
     public void setEndingTime(Date endingTime) {
         this.endingTime = endingTime;
-
     }
 
     public void setDijkstra(ArrayList<Nodo> pGraph){
