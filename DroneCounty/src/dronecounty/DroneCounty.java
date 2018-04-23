@@ -63,7 +63,7 @@ public class DroneCounty {
         //----------------------------------
         Dijkstra d = new Dijkstra(g);
         d.execute(v1);
-        LinkedList<Vertex> path = d.getPath(v2);
+        ArrayList<Vertex> path = d.getPath(v6);
         path.forEach((vertex) -> {System.out.println(vertex);});
     }
 }

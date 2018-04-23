@@ -109,8 +109,8 @@ public class Dijkstra {
      * This method returns the path from the source to the selected target and
      * NULL if no path exists
      */
-    public LinkedList<Vertex> getPath(Vertex target) {
-        LinkedList<Vertex> path = new LinkedList<>();
+    public ArrayList<Vertex> getPath(Vertex target) {
+        ArrayList<Vertex> path = new ArrayList<>();
         Vertex step = target;
         // check if a path exists
         if (predecessors.get(step) == null) {
