@@ -1,16 +1,12 @@
 package dronecounty;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 
 public class Trip {
     private Vertex origin;
     private Vertex destination;
     private ArrayList<Vertex> route;
     private Track track;
-    private int height;
-    private int xPosition;
     private Date initialTime;
     private Date endingTime;
 
@@ -34,14 +30,6 @@ public class Trip {
         return track;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getxPosition() {
-        return xPosition;
-    }
-
     public Date getInitialTime() {
         return initialTime;
     }
@@ -60,14 +48,6 @@ public class Trip {
 
     public void setTrack(Track track) {
         this.track = track;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setxPosition(int xPosition) {
-        this.xPosition = xPosition;
     }
 
     public void setInitialTime(Date initialTime) {
