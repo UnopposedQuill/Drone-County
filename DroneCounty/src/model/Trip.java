@@ -1,4 +1,4 @@
-package dronecounty;
+package model;
 
 import java.util.*;
 

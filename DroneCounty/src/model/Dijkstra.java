@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dronecounty;
+package model;
 
 //Conseguido de
 //http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html
+
+//it has to be completely rebuilt
+//Esteban's going to do that
 
 import java.util.*;
 
