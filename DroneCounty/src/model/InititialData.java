@@ -10,40 +10,37 @@ package model;
  * @author Elias
  */
 public class InititialData {
-    private int nodeQty;
-    private int tripQty;
-    private int setUpTime;
-    private int timeRatio;
-    private int edgeQty;
+    private static int nodeQty;
+    private static int tripQty;
+    private static int setUpTime;
+    private static int timeRatio;
+    private static int edgeQty;
 
-    public int getNodeQty() {
+    public static int getNodeQty() {
         return nodeQty;
     }
 
-    public int getTripQty() {
+    public static int getTripQty() {
         return tripQty;
     }
 
-    public int getSetUpTime() {
+    public static int getSetUpTime() {
         return setUpTime;
     }
 
-    public int getTimeRatio() {
+    public static int getTimeRatio() {
         return timeRatio;
     }
 
-    public int getEdgeQty() {
+    public static int getEdgeQty() {
         return edgeQty;
     }
 
-    public InititialData(int nodeQty, int tripQty, int setUpTime, int edgeQty) {
-        this.nodeQty = nodeQty;
-        this.tripQty = tripQty;
-        this.setUpTime = setUpTime;
-        //this.timeRatio = timeRatio;
-        this.edgeQty = edgeQty;
+    public InititialData(int pNodeQty, int pTripQty, int pSetUpTime, int pEdgeQty) {
+        nodeQty = pNodeQty;
+        tripQty = pTripQty;
+        setUpTime = pSetUpTime;
+        //this.timeRatio = timeRatio;  //Debemos hacer la conversion de cuanto equivale 1 segundo en la simulacion
+        edgeQty = pEdgeQty;
     }
-    
-    
-    
 }
