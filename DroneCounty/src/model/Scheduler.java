@@ -5,10 +5,13 @@
  */
 package model;
 
+import java.util.*;
+
 /**
  *
  * @author Esteban
  */
 public abstract class Scheduler {
     
+    public abstract ArrayList<Trip> scheduleTrips(Graph<Station> G);
 }

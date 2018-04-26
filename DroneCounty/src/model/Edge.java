@@ -5,7 +5,7 @@
  */
 package model;
 
-import java.util.Objects;
+import java.util.*;
 
 /**
  *
@@ -61,9 +61,6 @@ public class Edge<T>{
         if (!Objects.equals(this.vertex1, other.vertex1)) {
             return false;
         }
-        if (!Objects.equals(this.vertex2, other.vertex2)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.vertex2, other.vertex2);
     }
 }

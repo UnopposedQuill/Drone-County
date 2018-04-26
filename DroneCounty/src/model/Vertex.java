@@ -39,10 +39,7 @@ public class Vertex<T>{
             return false;
         }
         final Vertex<?> other = (Vertex<?>) obj;
-        if (!Objects.equals(this.objectInside, other.objectInside)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.objectInside, other.objectInside);
     }
 
     @Override

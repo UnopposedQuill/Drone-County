@@ -11,4 +11,6 @@ package model;
  */
 public class Simulator {
     
+    private ConstantData data;
+    
 }

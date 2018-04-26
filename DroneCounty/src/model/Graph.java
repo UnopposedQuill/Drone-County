@@ -6,6 +6,7 @@
 package model;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /**
  *
@@ -21,6 +22,28 @@ public class Graph<T>{
         this.edges = new HashSet<>();
     }
     
+    public Graph(Station [] stations, int stationNumber, int edgeNumber){
+        this.vertexes = new HashSet<>();
+        this.edges = new HashSet<>();
+        Random random = new Random();
+        //I have to get the new stations inside
+        for (int i = 0; i < stationNumber; i++) {
+            
+        }
+        for (int i = 0; i < stations.length; i++) {
+            this.addVertex(new Vertex<>(stations[i]));
+        }
+        //now i'm missing the edges only
+        for (int i = 0; i < this.vertexes.size(); i++) {
+            this.vertexes.stream().forEachOrdered((Vertex<T> vertex) -> {
+                for (int j = 0; j < edgeNumber; j++) {
+                    
+                }
+            });
+            
+        }
+    }
+   
     public boolean addVertex(Vertex<T>vertex){
         return this.vertexes.add(vertex);
     }

@@ -11,4 +11,15 @@ package controller;
  */
 public class SimulationController {
     
+    public void initiateDivideAndConquerSimulation(int stationQuantity, double maxSimulationTime){
+        
+    }
+    
+    public void initiateProbabilisticSimulation(int stationQuantity, double maxSimulationTime){
+        
+    }
+    
+    public void initiateBackTrackingSimulation(int stationQuantity, double maxSimulationTime){
+        
+    }
 }

@@ -5,16 +5,10 @@
  */
 package model;
 
-import java.util.ArrayList;
-
 /**
  *
- * @author Esteban
+ * @author esteban
  */
-public class DividerScheduler extends Scheduler{
+public class Timeline {
     
-    @Override
-    public ArrayList<Trip> scheduleTrips(Graph<Station> G){
-        return null;
-    }
 }

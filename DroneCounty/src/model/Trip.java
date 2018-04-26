@@ -7,8 +7,11 @@ public class Trip {
     private Vertex destination;
     private ArrayList<Vertex> route;
     private Track track;
+    /*
     private Date initialTime;
     private Date endingTime;
+    */
+    private ArrayList<Timeline> timelines;
 
     public Vertex getOrigin() {
         return origin;
@@ -30,6 +33,7 @@ public class Trip {
         return track;
     }
 
+    /*
     public Date getInitialTime() {
         return initialTime;
     }
@@ -37,19 +41,21 @@ public class Trip {
     public Date getEndingTime() {
         return endingTime;
     }
+    */
 
     public void setOrigin(Vertex pOrigin) {
         origin = pOrigin;
     }
 
     public void setDestination(Vertex Pddestination) {
-        destination = destination;
+        destination = Pddestination;
     }
 
     public void setTrack(Track track) {
         this.track = track;
     }
 
+    /*
     public void setInitialTime(Date initialTime) {
         this.initialTime = initialTime;
     }
@@ -57,6 +63,7 @@ public class Trip {
     public void setEndingTime(Date endingTime) {
         this.endingTime = endingTime;
     }
+    */
 
     public void setDijkstra(Graph pGraph){
         Dijkstra vDijkstra = new Dijkstra(pGraph);

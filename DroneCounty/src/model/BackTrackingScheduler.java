@@ -5,10 +5,16 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Esteban
  */
-public class BackTrackingScheduler {
+public class BackTrackingScheduler extends Scheduler{
     
+    @Override
+    public ArrayList<Trip> scheduleTrips(Graph<Station> G){
+        return null;
+    }
 }

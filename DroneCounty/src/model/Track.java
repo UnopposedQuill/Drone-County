@@ -1,40 +1,22 @@
 package model;
 
 public class Track {
-    private int whidth;
+    private int width;
     private int height;
-    private int limit;
-    private int numOfSubtracks;
 
-    public int getWhidth() {
-        return whidth;
+    public int getWidth() {
+        return width;
     }
 
     public int getHeight() {
         return height;
     }
 
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setWhidth(int whidth) {
-        this.whidth = whidth;
+    public void setWidth(int width) {
+        this.width = width;
     }
 
     public void setHeight(int height) {
         this.height = height;
-    }
-
-    public int getNumOfSubtracks() {
-        return numOfSubtracks;
-    }
-
-    public void setNumOfSubtracks(int numOfSubtracks) {
-        this.numOfSubtracks = numOfSubtracks;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
     }
 }
