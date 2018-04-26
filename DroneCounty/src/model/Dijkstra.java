@@ -11,7 +11,6 @@ package model;
 //it has to be completely rebuilt
 //Esteban's going to do that
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.util.*;
 
 /**
@@ -30,7 +29,9 @@ public class Dijkstra {
             minimumDistances.put(vertex, Double.POSITIVE_INFINITY);
         }
         minimumDistances.replace(initialVertex, 0.0);
-        PriorityQueue<Vertex> queue = new PriorityQueue((Vertex,Vertex2) -> (minimumDistances.get((Vertex)Vertex).compareTo(minimumDistances.get((Vertex)Vertex2))));
+        PriorityQueue<Vertex> queue = new PriorityQueue((vertex,vertex2) -> (
+                minimumDistances.get((Vertex)vertex).compareTo(minimumDistances.get((Vertex)vertex2))
+        ));
         queue.add(initialVertex);
         while(!queue.isEmpty()){
             Vertex v = queue.poll();
