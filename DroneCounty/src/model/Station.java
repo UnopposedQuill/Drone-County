@@ -10,11 +10,12 @@ package model;
  * @author Esteban
  */
 public class Station {
-    private final double xPosition, yPosition;
+    private final double xPosition, yPosition, name;
 
-    public Station(double xPosition, double yPosition) {
+    public Station(double xPosition, double yPosition, double name) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
+        this.name = name;
     }
 
     public double getxPosition() {
@@ -24,6 +25,8 @@ public class Station {
     public double getyPosition() {
         return yPosition;
     }
+
+    public double getName(){return name;}
 
     @Override
     public int hashCode() {
