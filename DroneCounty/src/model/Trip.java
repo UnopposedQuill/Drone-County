@@ -63,8 +63,7 @@ public class Trip {
     public void setEndingTime(Date endingTime) {
         this.endingTime = endingTime;
     }
-    */
-
+    
     public void setDijkstra(Graph pGraph){
         Dijkstra vDijkstra = new Dijkstra(pGraph);
         ArrayList<Vertex> listOfNodes = new ArrayList<>();
@@ -72,4 +71,5 @@ public class Trip {
         listOfNodes = vDijkstra.getPath(this.destination);
         this.setRoute(listOfNodes);
     }
+    */
 }

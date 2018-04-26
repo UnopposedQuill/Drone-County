@@ -61,11 +61,19 @@ public class DroneCounty {
         g.addEdge(v6, v3, 3);
         g.addEdge(v6, v5, 4);
         //----------------------------------
+        /*
+        -------Old version--------
         Dijkstra d = new Dijkstra(g);
         d.execute(v1);
         ArrayList<Vertex> path = d.getPath(v6);
         path.forEach((vertex) -> {System.out.println(vertex);});
-
+        -------Old version--------
+        */
+        DijkstraRoad dijkstraRoad = Dijkstra.calculateRoads(g, v1);
+        System.out.println(dijkstraRoad);
+        
+        ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
+        System.out.println(allRoads);
     }
 
     public static ArrayList<Trip> setJourney(int pNumberOfTrips, ArrayList<Vertex> pGraph){

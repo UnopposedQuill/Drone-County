@@ -6,7 +6,6 @@
 package model;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 /**
  *
@@ -22,16 +21,17 @@ public class Graph<T>{
         this.edges = new HashSet<>();
     }
     
-    public Graph(Station [] stations, int stationNumber, int edgeNumber){
+    public Graph(ArrayList<Station>stations, int stationNumber, int edgeNumber){
         this.vertexes = new HashSet<>();
         this.edges = new HashSet<>();
         Random random = new Random();
         //I have to get the new stations inside
+        /*
         for (int i = 0; i < stationNumber; i++) {
             
         }
-        for (int i = 0; i < stations.length; i++) {
-            this.addVertex(new Vertex<>(stations[i]));
+        for (int i = 0; i < stations.size(); i++) {
+            this.addVertex(new Vertex<>(stations.get(i)));
         }
         //now i'm missing the edges only
         for (int i = 0; i < this.vertexes.size(); i++) {
@@ -42,9 +42,10 @@ public class Graph<T>{
             });
             
         }
+        */
     }
    
-    public boolean addVertex(Vertex<T>vertex){
+    public boolean addVertex(Vertex<T> vertex){
         return this.vertexes.add(vertex);
     }
     
@@ -61,5 +62,15 @@ public class Graph<T>{
 
     public HashSet<Edge> getEdges() {
         return edges;
+    }
+    
+    public ArrayList<Edge> findNeighbours(Vertex<T> vertex){
+        ArrayList<Edge> answer = new  ArrayList<>();
+        this.edges.stream().forEach((Edge e) -> {
+            if(e.getVertex1().equals(vertex)){
+                answer.add(e);
+            }
+        });
+        return answer;
     }
 }

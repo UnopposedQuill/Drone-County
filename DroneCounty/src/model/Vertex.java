@@ -15,11 +15,19 @@ import java.util.*;
 public class Vertex<T>{
     
     private T objectInside;
-
+    //private ArrayList<Vertex<T>> neighbours;
+    
     public Vertex(T objectInside) {
         this.objectInside = objectInside;
+        //this.neighbours = new ArrayList<>();
     }
 
+    /*
+    public ArrayList<Vertex<T>> getNeighbours() {
+        return neighbours;
+    }
+    */
+    
     @Override
     public int hashCode() {
         int hash = 5;
@@ -47,3 +55,4 @@ public class Vertex<T>{
         return "Vertex {" + objectInside + '}';
     }
 }
+
