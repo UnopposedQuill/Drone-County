@@ -21,28 +21,58 @@ public class Graph<T>{
         this.edges = new HashSet<>();
     }
     
-    public Graph(ArrayList<Station>stations, int stationNumber, int edgeNumber){
+    public Graph(Station[] stations, int stationNumber, int edgeNumber){
         this.vertexes = new HashSet<>();
         this.edges = new HashSet<>();
         Random random = new Random();
-        //I have to get the new stations inside
-        /*
-        for (int i = 0; i < stationNumber; i++) {
-            
+        Vertex possibleNewVertex;
+        int generatedRandomNumber;
+        //I have to get the new stations inside an N number of random stations taken from the Stations list
+        while(this.vertexes.size() < stationNumber){
+            generatedRandomNumber = (int)(stationNumber * random.nextDouble());
+            possibleNewVertex = (Vertex<T>) new Vertex<>(stations[generatedRandomNumber]);
+            if(generatedRandomNumber == 1 && !this.vertexes.contains(possibleNewVertex)){
+                this.vertexes.add(possibleNewVertex);
+            }
         }
-        for (int i = 0; i < stations.size(); i++) {
-            this.addVertex(new Vertex<>(stations.get(i)));
-        }
+        random.setSeed(0);//reset the random's seed, just in case
         //now i'm missing the edges only
-        for (int i = 0; i < this.vertexes.size(); i++) {
-            this.vertexes.stream().forEachOrdered((Vertex<T> vertex) -> {
-                for (int j = 0; j < edgeNumber; j++) {
-                    
+        ArrayList<Vertex> vertexesWithoutEdgesToThem = new ArrayList<>(this.vertexes);
+        Iterator vertexIterator = this.vertexes.iterator();
+        while (vertexIterator.hasNext()) {
+            Vertex vertex = (Vertex<T>)vertexIterator.next();
+            int edgeCount = 0;//this represents the number of edges already generated to that point
+            while(edgeCount < edgeNumber){//I'd normally use a For, but I need further manipulation of edgeCount
+                
+                if(!vertexesWithoutEdgesToThem.isEmpty()){//I have to prioritize the vertexes who have no edges to them
+                    //I'll pick a random one
+                    generatedRandomNumber = (int)(vertexesWithoutEdgesToThem.size()*random.nextDouble());//I give myself one random position I can get
+                    this.edges.add(new Edge(vertex, vertexesWithoutEdgesToThem.get(generatedRandomNumber), Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)vertexesWithoutEdgesToThem.get(generatedRandomNumber).getObjectInside()).getxPosition(), 
+                                                                                                                      ((Station)vertex.getObjectInside()).getyPosition()-((Station)vertexesWithoutEdgesToThem.get(generatedRandomNumber).getObjectInside()).getyPosition())));//I add the edge to the arbitrary picked vertex
+                    vertexesWithoutEdgesToThem.remove(generatedRandomNumber);//it now has at least one edge, so I'll remove it from the options
+                    edgeCount++;//I just added an edge, so i'll add it to the count
+                    continue;//next edge
                 }
-            });
-            
+                //all the vertexes have edges to them, so, i'll pick the closest one that doesn't have an edge to it from this vertex
+                PriorityQueue<Vertex> queueCloserVertexes = new PriorityQueue((vertex1, vertex2) -> (
+                        Double.compare( Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)((Vertex)vertex1).getObjectInside()).getxPosition(), 
+                                                  ((Station)vertex.getObjectInside()).getyPosition()-((Station)((Vertex)vertex1).getObjectInside()).getyPosition()), 
+                                        Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)((Vertex)vertex2).getObjectInside()).getxPosition(), 
+                                                  ((Station)vertex.getObjectInside()).getyPosition()-((Station)((Vertex)vertex2).getObjectInside()).getyPosition()))
+                ));
+                //all the vertexes can now ordered along their closeness to "vertex", which is the current iterating vertex whose number of output edges
+                //I just have to pick the one that's in the peek to get the closer one to the current vertex of the iteration
+                while(edgeCount < edgeNumber){//I'll fill the remaining edges using while, If I decided to use an "if", the algorithm would fill the remaining ones using just the closer vertex, which is absolutely a no-go
+                    if(queueCloserVertexes.isEmpty()){//if it's empty, I cycled all the nodes available for use, so I'll refill it
+                        queueCloserVertexes.addAll(this.vertexes);//I have to get the vertexes inside the queue
+                    }
+                    Vertex target = queueCloserVertexes.poll();
+                    this.edges.add(new Edge(vertex, target, Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)target.getObjectInside()).getxPosition(), 
+                                                                       ((Station)vertex.getObjectInside()).getyPosition()-((Station)target.getObjectInside()).getyPosition())));
+                    edgeCount++;//I just added an edge, so i'll add it to the count
+                }
+            }
         }
-        */
     }
    
     public boolean addVertex(Vertex<T> vertex){
