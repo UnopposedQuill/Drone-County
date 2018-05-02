@@ -29,9 +29,9 @@ public class Graph<T>{
         int generatedRandomNumber;
         //I have to get the new stations inside an N number of random stations taken from the Stations list
         while(this.vertexes.size() < stationNumber){
-            generatedRandomNumber = (int)(stationNumber * random.nextDouble());
+            generatedRandomNumber = (int)(stations.length * random.nextDouble());
             possibleNewVertex = (Vertex<T>) new Vertex<>(stations[generatedRandomNumber]);
-            if(generatedRandomNumber == 1 && !this.vertexes.contains(possibleNewVertex)){
+            if(/*generatedRandomNumber == 1 && */!this.vertexes.contains(possibleNewVertex)){
                 this.vertexes.add(possibleNewVertex);
             }
         }
@@ -45,11 +45,14 @@ public class Graph<T>{
                 if(!vertexesWithoutEdgesToThem.isEmpty()){//I have to prioritize the vertexes who have no edges to them
                     //I'll pick a random one
                     generatedRandomNumber = (int)(vertexesWithoutEdgesToThem.size()*random.nextDouble());//I give myself one random position I can get
-                    this.edges.add(new Edge(vertex, vertexesWithoutEdgesToThem.get(generatedRandomNumber), Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)vertexesWithoutEdgesToThem.get(generatedRandomNumber).getObjectInside()).getxPosition(),
-                            ((Station)vertex.getObjectInside()).getyPosition()-((Station)vertexesWithoutEdgesToThem.get(generatedRandomNumber).getObjectInside()).getyPosition())));//I add the edge to the arbitrary picked vertex
-                    vertexesWithoutEdgesToThem.remove(generatedRandomNumber);//it now has at least one edge, so I'll remove it from the options
-                    edgeCount++;//I just added an edge, so i'll add it to the count
-                    continue;//next edge
+                    possibleNewVertex = vertexesWithoutEdgesToThem.get(generatedRandomNumber);
+                    if(possibleNewVertex != vertex){//I HAVE to make sure it didn't pick himself on the first iteration
+                        this.edges.add(new Edge(vertex, possibleNewVertex, Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)possibleNewVertex.getObjectInside()).getxPosition(),
+                                ((Station)vertex.getObjectInside()).getyPosition()-((Station)possibleNewVertex.getObjectInside()).getyPosition())));//I add the edge to the arbitrary picked vertex
+                        vertexesWithoutEdgesToThem.remove(generatedRandomNumber);//it now has at least one edge, so I'll remove it from the options
+                        edgeCount++;//I just added an edge, so i'll add it to the count
+                        continue;//next edge
+                    }
                 }
                 //all the vertexes have edges to them, so, i'll pick the closest one that doesn't have an edge to it from this vertex
                 PriorityQueue<Vertex> queueCloserVertexes = new PriorityQueue((vertex1, vertex2) -> (
@@ -63,6 +66,8 @@ public class Graph<T>{
                 while(edgeCount < edgeNumber){//I'll fill the remaining edges using while, If I decided to use an "if", the algorithm would fill the remaining ones using just the closer vertex, which is absolutely a no-go
                     if(queueCloserVertexes.isEmpty()){//if it's empty, I cycled all the nodes available for use, so I'll refill it
                         queueCloserVertexes.addAll(this.vertexes);//I have to get the vertexes inside the queue
+                        //I noticed that this thing add himself as another station that is at 0.0 distance, so I have to remove it from the options
+                        queueCloserVertexes.remove(vertex);//I take it out
                     }
                     Vertex target = queueCloserVertexes.poll();//i take the closer one to the current vertex which hasnt' been cycled
                     this.edges.add(new Edge(vertex, target, 
@@ -112,7 +117,7 @@ public class Graph<T>{
             result = result.concat(vertex.toString());//I add the current vertex info to the string
             ArrayList<Edge> neighbours = this.findNeighbours(vertex);
             if(!neighbours.isEmpty()){//if it has one or more neighbors i'll add something to the vertex info to watch it prettier
-                result = result.concat("\n\t");//some pretty stuff
+                result = result.concat("\n");//some pretty stuff
             }
             for (int i = 0; i < this.findNeighbours(vertex).size(); i++) {
                 result = result.concat("\t\t"+neighbours.get(i).toString()+"\n");

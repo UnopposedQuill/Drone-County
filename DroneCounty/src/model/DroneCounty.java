@@ -19,63 +19,12 @@ public class DroneCounty {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Graph g = new Graph(ConstantData.stations, 6, 7);
+        Graph g = new Graph(ConstantData.stations, 12, 7);
         System.out.println(g.toString());
         
         ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
         System.out.println(allRoads);
     }
-        /*
-        //Stuff no longer needed and will be removed in case of success in the new mechanisms of creating graphs
-        
-        Vertex v1 = new Vertex(1);
-        Vertex v2 = new Vertex(2);
-        Vertex v3 = new Vertex(3);
-        Vertex v4 = new Vertex(4);
-        Vertex v5 = new Vertex(5);
-        Vertex v6 = new Vertex(6);
-        //----------------------------------
-        g.addVertex(v1);
-        g.addVertex(v2);
-        g.addVertex(v3);
-        g.addVertex(v4);
-        g.addVertex(v5);
-        g.addVertex(v6);
-        //----------------------------------
-        g.addEdge(v1, v2, 1);
-        g.addEdge(v1, v3, 2);
-        g.addEdge(v1, v4, 1);
-        g.addEdge(v1, v6, 4);
-        //----------------------------------
-        g.addEdge(v2, v1, 6);
-        g.addEdge(v2, v4, 1);
-        g.addEdge(v2, v5, 2);
-        //----------------------------------
-        g.addEdge(v3, v2, 3);
-        g.addEdge(v3, v4, 1);
-        g.addEdge(v3, v5, 4);
-        g.addEdge(v3, v6, 1);
-        //----------------------------------
-        g.addEdge(v4, v1, 6);
-        g.addEdge(v4, v5, 1);
-        g.addEdge(v4, v6, 2);
-        //----------------------------------
-        g.addEdge(v5, v1, 1);
-        g.addEdge(v5, v6, 2);
-        //----------------------------------
-        g.addEdge(v6, v1, 1);
-        g.addEdge(v6, v2, 1);
-        g.addEdge(v6, v3, 3);
-        g.addEdge(v6, v5, 4);
-        //----------------------------------
-        /*
-        -------Old version--------
-        Dijkstra d = new Dijkstra(g);
-        d.execute(v1);
-        ArrayList<Vertex> path = d.getPath(v6);
-        path.forEach((vertex) -> {System.out.println(vertex);});
-        -------Old version--------
-        */
 
     public static ArrayList<Trip> setJourney(int pNumberOfTrips, ArrayList<Vertex> pGraph){
         int numberOfNodes = pGraph.size();
