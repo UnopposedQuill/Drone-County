@@ -29,6 +29,11 @@ public class Station {
     public double getName(){return name;}
 
     @Override
+    public String toString() {
+        return "Station{" + "'X' Position=" + xPosition + ", 'Y' Position=" + yPosition + '}';
+    }
+    
+    @Override
     public int hashCode() {
         int hash = 5;
         hash = 97 * hash + (int) (Double.doubleToLongBits(this.xPosition) ^ (Double.doubleToLongBits(this.xPosition) >>> 32));

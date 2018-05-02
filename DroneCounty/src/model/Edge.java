@@ -35,6 +35,11 @@ public class Edge<T>{
     }
 
     @Override
+    public String toString() {
+        return "Edge: {" + vertex1 + "\t->"+ weight + "->\t" + vertex2 + '}';
+    }
+    
+    @Override
     public int hashCode() {
         int hash = 3;
         hash = 67 * hash + Objects.hashCode(this.vertex1);

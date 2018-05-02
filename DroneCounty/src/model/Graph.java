@@ -102,4 +102,25 @@ public class Graph<T>{
         });
         return answer;
     }
+
+    @Override
+    public String toString() {
+        
+        String result = "Graph {\n"+"Vertexes {";//variable to store the current parse of the graph
+        
+        for(Vertex<T> vertex: this.vertexes){//I have to add all the vertexes' info
+            result = result.concat(vertex.toString());//I add the current vertex info to the string
+            ArrayList<Edge> neighbours = this.findNeighbours(vertex);
+            if(!neighbours.isEmpty()){//if it has one or more neighbors i'll add something to the vertex info to watch it prettier
+                result = result.concat("\n\t");//some pretty stuff
+            }
+            for (int i = 0; i < this.findNeighbours(vertex).size(); i++) {
+                result = result.concat("\t\t"+neighbours.get(i).toString()+"\n");
+            }
+        }
+        result += '}';
+        return result;
+    }
+    
+    
 }

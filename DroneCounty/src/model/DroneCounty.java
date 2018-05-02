@@ -19,7 +19,14 @@ public class DroneCounty {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Graph g = new Graph();
+        Graph g = new Graph(ConstantData.stations, 6, 7);
+        System.out.println(g.toString());
+        
+        ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
+        System.out.println(allRoads);
+    }
+        /*
+        //Stuff no longer needed and will be removed in case of success in the new mechanisms of creating graphs
         
         Vertex v1 = new Vertex(1);
         Vertex v2 = new Vertex(2);
@@ -69,12 +76,6 @@ public class DroneCounty {
         path.forEach((vertex) -> {System.out.println(vertex);});
         -------Old version--------
         */
-        DijkstraRoad dijkstraRoad = Dijkstra.calculateRoads(g, v1);
-        System.out.println(dijkstraRoad);
-        
-        ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
-        System.out.println(allRoads);
-    }
 
     public static ArrayList<Trip> setJourney(int pNumberOfTrips, ArrayList<Vertex> pGraph){
         int numberOfNodes = pGraph.size();

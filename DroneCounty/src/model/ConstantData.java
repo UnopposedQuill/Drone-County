@@ -14,10 +14,10 @@ import java.util.Hashtable;
  */
 public class ConstantData {
 
-    public int velocity;
-    public int trackMaximumHeight;
-    public Hashtable<Double, ArrayList<Double>> TimeLists;
-    public Station[] stations = {
+    public static int velocity;
+    public static int trackMaximumHeight;
+    public static Hashtable<Double, ArrayList<Double>> TimeLists;
+    public static Station[] stations = {
             new Station(90.0, 70.0, 1), new Station(250.0, 60.0, 2), new Station(370.0, 90.0, 3), new Station(450.0, 40.0, 4), new Station(610.0, 60.0, 5),
             new Station(240.0, 150.0, 6), new Station(380.0, 170.0, 7), new Station(510.0, 160.0, 8), new Station(620.0, 130.0, 9), new Station(170.0, 260.0, 10),
             new Station(300.0, 240.0, 11), new Station(430.0, 230.0, 12), new Station(580.0, 250.0, 13), new Station(460.0, 320.0, 14), new Station(620.0, 420.0, 15),
