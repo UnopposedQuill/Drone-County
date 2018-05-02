@@ -54,7 +54,7 @@ public class Dijkstra {
         return allRoads;
     }
     
-    public static ArrayList<Trip> calculateAllTrips(ArrayList<DijkstraRoad> dijkstraRoads){
+    public static ArrayList<Trip> calculateAllTrips(ArrayList<DijkstraRoad> dijkstraRoads, int height, int widht){
         ArrayList<Trip> result = new ArrayList<>();
         //for each vertex in the DijkstraRoad i have to add each vertex in the ".getPath()" method
         for (int i = 0; i < dijkstraRoads.size(); i++) {
@@ -62,7 +62,7 @@ public class Dijkstra {
             //in this project we won't want to go from A to A, just specifications
             //i'll just stream all the vertexes while filtering them in order to skip the A to A jumps
             getDijkstraRoad.getMinimumDistances().keySet().stream().filter((vertex) -> (!getDijkstraRoad.getInitial().equals(vertex))).forEachOrdered((vertex) -> {
-                result.add(new Trip(getDijkstraRoad.getInitial(), vertex, getDijkstraRoad.getPath().get(vertex), new Track(1000, 1000)));
+                result.add(new Trip(getDijkstraRoad.getInitial(), vertex, getDijkstraRoad.getPath().get(vertex), new Track(widht, height)));
             }); 
         }
         return result;
