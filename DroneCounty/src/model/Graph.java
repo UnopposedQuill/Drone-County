@@ -111,7 +111,7 @@ public class Graph<T>{
     @Override
     public String toString() {
         
-        String result = "Graph {\n"+"Vertexes {";//variable to store the current parse of the graph
+        String result = "Graph { Vertexes {\n";//variable to store the current parse of the graph
         
         for(Vertex<T> vertex: this.vertexes){//I have to add all the vertexes' info
             result = result.concat(vertex.toString());//I add the current vertex info to the string
