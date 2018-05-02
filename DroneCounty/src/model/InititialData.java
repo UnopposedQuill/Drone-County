@@ -14,8 +14,8 @@ public class InititialData {
     private static int tripQty;
     private static int setUpTime;
     private static int timeRatio;
-    private static int edgeQty;
-
+    private static int edgeQty; 
+    
     public static int getNodeQty() {
         return nodeQty;
     }

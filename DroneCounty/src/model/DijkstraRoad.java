@@ -64,8 +64,18 @@ public class DijkstraRoad {
         return true;
     }
 
+    public static String fullDijkstraRoadsToString(ArrayList<DijkstraRoad> dijkstraRoadsToString){
+        String result = "DijkstraRoad{\n";
+        for (DijkstraRoad dijkstraRoad : dijkstraRoadsToString) {
+            result = result.concat("\t"+dijkstraRoad.toString()+"\n");
+        }
+        return result;
+    }
+    
     @Override
     public String toString() {
-        return "DijkstraRoad: Initial=" + initial + ", closest path=" + path + ", minimum distance=" + minimumDistances;
+        return "DijkstraRoad: Initial=" + initial + "\n"
+            + "\tClosest path=" + path + "\n"
+            + "\tMinimum distance=" + minimumDistances;
     }
 }

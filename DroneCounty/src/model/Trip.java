@@ -13,6 +13,14 @@ public class Trip {
     */
     private ArrayList<Timeline> timelines;
 
+    public Trip(Vertex origin, Vertex destination, ArrayList<Vertex> route, Track track) {
+        this.origin = origin;
+        this.destination = destination;
+        this.route = route;
+        this.track = track;
+        this.timelines = new ArrayList<>();
+    }
+    
     public Vertex getOrigin() {
         return origin;
     }
@@ -54,4 +62,11 @@ public class Trip {
     public void setTrack(Track track) {
         this.track = track;
     }
+
+    @Override
+    public String toString() {
+        return "Trip{" + "Origin=" + origin + ", Target=" + destination + ", Route=" + route + ", Track=" + track + ", Timelines=" + timelines + '}';
+    }
+    
+    
 }

@@ -31,7 +31,7 @@ public class Station {
 
     @Override
     public String toString() {
-        return "Station{" + "'X' Position=" + xPosition + ", 'Y' Position=" + yPosition + '}';
+        return "Station{" +"Name="+ name + ", 'X' Position=" + xPosition + ", 'Y' Position=" + yPosition + '}';
     }
 
     @Override

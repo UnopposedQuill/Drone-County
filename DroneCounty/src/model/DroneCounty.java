@@ -23,9 +23,11 @@ public class DroneCounty {
         System.out.println(g.toString());
         
         ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
-        System.out.println(allRoads);
+        System.out.println(DijkstraRoad.fullDijkstraRoadsToString(allRoads));
     }
 
+    /*
+    //Obsolete method
     public static ArrayList<Trip> setJourney(int pNumberOfTrips, ArrayList<Vertex> pGraph){
         int numberOfNodes = pGraph.size();
         int randNumber;
@@ -49,6 +51,7 @@ public class DroneCounty {
         return tripList;
         //initGraphNodes(5);
     }
+*/
    
     public static ArrayList<Vertex> initGraphNodes(int quantity, ArrayList<Vertex> nodeList){
         Random rand = new Random();
