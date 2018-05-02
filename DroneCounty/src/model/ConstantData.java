@@ -11,9 +11,9 @@ package model;
  */
 public class ConstantData {
     
-    public int velocity;
-    public int trackMaximumHeight;
-    public Station[] stations = {
+    public static int velocity;
+    public static int trackMaximumHeight;
+    public static Station[] stations = {
         new Station(1, 1), new Station(1, 1), new Station(1, 1), new Station(1, 1), new Station(1, 1),
         new Station(1, 1), new Station(1, 1), new Station(1, 1), new Station(1, 1), new Station(1, 1),
         new Station(1, 1), new Station(1, 1), new Station(1, 1), new Station(1, 1), new Station(1, 1),
