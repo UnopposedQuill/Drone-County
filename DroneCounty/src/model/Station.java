@@ -10,9 +10,10 @@ package model;
  * @author Esteban
  */
 public class Station {
-    private final double xPosition, yPosition, name;
+    private final double xPosition, yPosition;
+    private final int name;
 
-    public Station(double xPosition, double yPosition, double name) {
+    public Station(double xPosition, double yPosition, int name) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.name = name;
@@ -26,18 +27,19 @@ public class Station {
         return yPosition;
     }
 
-    public double getName(){return name;}
+    public Integer getName(){return name;}
 
     @Override
     public String toString() {
         return "Station{" + "'X' Position=" + xPosition + ", 'Y' Position=" + yPosition + '}';
     }
-    
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.xPosition) ^ (Double.doubleToLongBits(this.xPosition) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.yPosition) ^ (Double.doubleToLongBits(this.yPosition) >>> 32));
+        int hash = 3;
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.xPosition) ^ (Double.doubleToLongBits(this.xPosition) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.yPosition) ^ (Double.doubleToLongBits(this.yPosition) >>> 32));
+        hash = 79 * hash + this.name;
         return hash;
     }
 
@@ -57,6 +59,9 @@ public class Station {
             return false;
         }
         if (Double.doubleToLongBits(this.yPosition) != Double.doubleToLongBits(other.yPosition)) {
+            return false;
+        }
+        if (this.name != other.name) {
             return false;
         }
         return true;

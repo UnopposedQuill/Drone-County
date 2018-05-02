@@ -13,6 +13,11 @@ import java.util.ArrayList;
  */
 public class ProbabilisticScheduler extends Scheduler{
     
+    /*
+    I was thinking: Why do we have to bring a random choice of EVERY possible combination in order
+    to make this a Probabilistic guy. Actually, he only needs to choose randomly on two different choices, right?
+    */
+    
     @Override
     public ArrayList<Trip> scheduleTrips(Graph<Station> G){
         return null;

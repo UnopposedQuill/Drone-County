@@ -19,7 +19,7 @@ public class DroneCounty {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Graph g = new Graph(ConstantData.stations, 12, 7);
+        Graph<Station> g = new Graph<>(ConstantData.stations, 12, 7);
         System.out.println(g.toString());
         
         ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);

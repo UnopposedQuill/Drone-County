@@ -54,22 +54,4 @@ public class Trip {
     public void setTrack(Track track) {
         this.track = track;
     }
-
-    /*
-    public void setInitialTime(Date initialTime) {
-        this.initialTime = initialTime;
-    }
-
-    public void setEndingTime(Date endingTime) {
-        this.endingTime = endingTime;
-    }
-    
-    public void setDijkstra(Graph pGraph){
-        Dijkstra vDijkstra = new Dijkstra(pGraph);
-        ArrayList<Vertex> listOfNodes = new ArrayList<>();
-        vDijkstra.execute(this.origin);
-        listOfNodes = vDijkstra.getPath(this.destination);
-        this.setRoute(listOfNodes);
-    }
-    */
 }

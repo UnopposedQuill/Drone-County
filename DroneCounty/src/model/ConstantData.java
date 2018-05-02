@@ -5,8 +5,7 @@
  */
 package model;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.*;
 
 /**
  *
@@ -16,7 +15,7 @@ public class ConstantData {
 
     public static int velocity;
     public static int trackMaximumHeight;
-    public static Hashtable<Double, ArrayList<Double>> TimeLists;
+    public static HashMap<Integer, ArrayList<Double>> TimeLists;
     public static Station[] stations = {
             new Station(90.0, 70.0, 1), new Station(250.0, 60.0, 2), new Station(370.0, 90.0, 3), new Station(450.0, 40.0, 4), new Station(610.0, 60.0, 5),
             new Station(240.0, 150.0, 6), new Station(380.0, 170.0, 7), new Station(510.0, 160.0, 8), new Station(620.0, 130.0, 9), new Station(170.0, 260.0, 10),
@@ -26,27 +25,32 @@ public class ConstantData {
             new Station(60.0, 280.0, 26), new Station(640.0, 600.0, 27), new Station(100.0, 630.0, 28), new Station(440.0, 230.0, 29), new Station(310.0, 440.0, 30)
     };
     
-    public Hashtable getPosibilities(ArrayList<Trip> pTripLists, Graph pGraph){
+    public HashMap getPosibilities(ArrayList<Trip> pTripLists, Graph pGraph){
         double clock = 0;
         int tripIndex = 0;
 
         while(clock < InititialData.getSetUpTime()){
-            if(pTripLists.get(tripIndex) == null){ break; }
-            if(TimeLists.contains(clock)){
+            if(pTripLists.get(tripIndex) == null){ 
+                break; 
+            }
+            double clockReference = clock;
+            if(TimeLists.values().stream().anyMatch((ArrayList<Double> t) -> {
+                return t.contains(clockReference);
+            })){
                 clock += 0.10;
             }else {
-                Hashtable<Double, ArrayList<Double>> newHours = new Hashtable<>();
-                newHours = TripFits(pTripLists.get(tripIndex), clock, pGraph);
+                HashMap<Integer, ArrayList<Double>> newHours = TripFits(pTripLists.get(tripIndex), clock, pGraph);
                 if(!newHours.isEmpty()){
-                    //queda concatenar ambos datos de las hashtables y actualizar TimeLists
+                    //queda concatenar ambos datos de las hashmaps y actualizar TimeLists
+                    TimeLists.putAll(newHours);
                 }
             }
         }
         return  TimeLists;
     }
 
-    private Hashtable<Double, ArrayList<Double>> TripFits(Trip pTrip, double pClock, Graph pGraph){
-        Hashtable<Double, ArrayList<Double>> TimesOfTrips = new Hashtable<>();
+    private HashMap<Integer, ArrayList<Double>> TripFits(Trip pTrip, double pClock, Graph pGraph){
+        HashMap<Integer, ArrayList<Double>> TimesOfTrips = new HashMap<>();
         ArrayList<Double> hours = new ArrayList<>();
         hours.add(pClock);
         TimesOfTrips.put(((Station) pTrip.getRoute().get(0).getObjectInside()).getName(), hours);

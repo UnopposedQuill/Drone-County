@@ -17,4 +17,8 @@ public class BackTrackingScheduler extends Scheduler{
     public ArrayList<Trip> scheduleTrips(Graph<Station> G){
         return null;
     }
+    
+    private boolean isAvailable(){
+        return false;
+    }
 }

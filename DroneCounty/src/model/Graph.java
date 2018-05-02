@@ -56,10 +56,10 @@ public class Graph<T>{
                 }
                 //all the vertexes have edges to them, so, i'll pick the closest one that doesn't have an edge to it from this vertex
                 PriorityQueue<Vertex> queueCloserVertexes = new PriorityQueue((vertex1, vertex2) -> (
-                        Double.compare( Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)((Vertex)vertex1).getObjectInside()).getxPosition(),
-                                ((Station)vertex.getObjectInside()).getyPosition()-((Station)((Vertex)vertex1).getObjectInside()).getyPosition()),
-                                Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)((Vertex)vertex2).getObjectInside()).getxPosition(),
-                                        ((Station)vertex.getObjectInside()).getyPosition()-((Station)((Vertex)vertex2).getObjectInside()).getyPosition()))
+                        Double.compare(Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)((Vertex)vertex1).getObjectInside()).getxPosition(),
+                                                  ((Station)vertex.getObjectInside()).getyPosition()-((Station)((Vertex)vertex1).getObjectInside()).getyPosition()),
+                                       Math.hypot(((Station)vertex.getObjectInside()).getxPosition()-((Station)((Vertex)vertex2).getObjectInside()).getxPosition(),
+                                                  ((Station)vertex.getObjectInside()).getyPosition()-((Station)((Vertex)vertex2).getObjectInside()).getyPosition()))
                         ));
                 //all the vertexes can now ordered along their closeness to "vertex", which is the current iterating vertex whose number of output edges
                 //I just have to pick the one that's in the peek to get the closer one to the current vertex of the iteration
@@ -120,7 +120,7 @@ public class Graph<T>{
                 result = result.concat("\n");//some pretty stuff
             }
             for (int i = 0; i < this.findNeighbours(vertex).size(); i++) {
-                result = result.concat("\t\t"+neighbours.get(i).toString()+"\n");
+                result = result.concat("\t"+neighbours.get(i).toString()+"\n");
             }
         }
         result += '}';
