@@ -73,7 +73,7 @@ public class ConstantData {
                 clock += 0.10;
             }
         }
-        return  TimeLists;
+        return TimeLists;
     }
 
     private static HashMap<Integer, ArrayList<Double>> TripFits(Trip pTrip, double pClock, Graph pGraph){
@@ -83,11 +83,11 @@ public class ConstantData {
         TimesOfTrips.put(((Station) pTrip.getRoute().get(0).getObjectInside()).getName(), hours);
         boolean fitsFine = true;
         ArrayList<Double> timeForDestiny = new ArrayList<>();
-        for(int routeIndex=0; routeIndex<(pTrip.getRoute().size()-1);routeIndex++){
+        for(int routeIndex = 0; routeIndex < (pTrip.getRoute().size()) ; routeIndex++){
             ArrayList<DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(pGraph);
             for (DijkstraRoad path : allRoads) {
                 if (path.getInitial() == pTrip.getRoute().get(routeIndex)) {
-                     timeForDestiny.add((path.getMinimumDistances().get(pTrip.getRoute().get(routeIndex + 1)) / 120) * 3600);
+                    timeForDestiny.add((path.getMinimumDistances().get(pTrip.getRoute().get(routeIndex + 1)) / 120) * 3600);
                     try {
                         if (TimeLists.containsValue(timeForDestiny)) {
                             TimesOfTrips.clear();

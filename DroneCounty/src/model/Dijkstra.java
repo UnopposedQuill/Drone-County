@@ -5,12 +5,6 @@
  */
 package model;
 
-//Conseguido de
-//http://www.vogella.com/tutorials/JavaAlgorithmsDijkstra/article.html
-
-//it has to be completely rebuilt
-//Esteban's going to do that
-
 import java.util.*;
 
 /**
@@ -37,7 +31,7 @@ public class Dijkstra {
             Vertex v = queue.poll();
             for (int i = 0; i < g.findNeighbours(v).size(); i++) {
                 Edge edge = (Edge)g.findNeighbours(v).get(i);
-                Double newDistance = minimumDistances.get(v)+edge.getWeight();
+                Double newDistance = minimumDistances.get(v) + edge.getWeight();
                 if(minimumDistances.get(edge.getVertex2()) > newDistance){
                     queue.remove(edge.getVertex2());
                     minimumDistances.replace(edge.getVertex2(), newDistance);
@@ -58,5 +52,29 @@ public class Dijkstra {
             allRoads.add(calculateRoads(g, (Vertex)initialVertexIterator.next()));
         }
         return allRoads;
+    }
+    
+    public static ArrayList<Trip> calculateAllTrips(ArrayList<DijkstraRoad> dijkstraRoads, int height, int width, int tripMaximumQuantity){
+        ArrayList<Trip> result = new ArrayList<>();
+        int tripQtyPerStation = tripMaximumQuantity/(dijkstraRoads.size()*(dijkstraRoads.size()-1));
+        int tripAssignmentCounter = 0;
+        //for each vertex in the DijkstraRoad i have to add each vertex in the ".getPath()" method
+        for (int i = 0; i < dijkstraRoads.size(); i++) {
+            DijkstraRoad getDijkstraRoad = dijkstraRoads.get(i);
+            //in this project we won't want to go from A to A, just specifications
+            //i'll just stream all the vertexes while filtering them in order to skip the A to A jumps
+            for(Vertex vertex:getDijkstraRoad.getPath().keySet()){
+                if(!getDijkstraRoad.getInitial().equals(vertex)){
+                    result.add(new Trip(getDijkstraRoad.getInitial(), vertex, getDijkstraRoad.getPath().get(vertex), new Track(width, height),tripQtyPerStation));
+                    tripAssignmentCounter+=tripQtyPerStation;
+                }
+            }
+        }
+        if(tripAssignmentCounter>tripMaximumQuantity){
+            Random random = new Random();
+            int rng = (int)(random.nextDouble()*dijkstraRoads.size()*(dijkstraRoads.size()-1));
+            result.get(rng).setTripTotalAmount(result.get(rng).getTripTotalAmount()+(tripAssignmentCounter-tripMaximumQuantity));
+        }
+        return result;
     }
 }
