@@ -13,8 +13,8 @@ import java.util.*;
  */
 public class ConstantData {
 
-    public static int velocity;
-    public static int trackMaximumHeight;
+    public static int VELOCITY = 120;
+    public static int TRACK_MAXIMUM_HEIGHT = 1000;
     public static HashMap<Integer, ArrayList<Double>> TimeLists;
     public static Station[] stations = {
             new Station(90.0, 70.0, 1), new Station(250.0, 60.0, 2), new Station(370.0, 90.0, 3), new Station(450.0, 40.0, 4), new Station(610.0, 60.0, 5),
@@ -25,31 +25,58 @@ public class ConstantData {
             new Station(60.0, 280.0, 26), new Station(640.0, 600.0, 27), new Station(100.0, 630.0, 28), new Station(440.0, 230.0, 29), new Station(310.0, 440.0, 30)
     };
     
-    public HashMap getPosibilities(ArrayList<Trip> pTripLists, Graph pGraph){
+    public static HashMap getPosibilities(ArrayList<Trip> pTripLists, Graph pGraph){
         double clock = 0;
         int tripIndex = 0;
+        int MAX = pTripLists.size();
+        ArrayList<Trip> uninsertable = new ArrayList<>();
 
         while(clock < InititialData.getSetUpTime()){
-            if(pTripLists.get(tripIndex) == null){ 
-                break; 
+            if(tripIndex == MAX){
+                tripIndex = 0;
             }
             double clockReference = clock;
-            if(TimeLists.values().stream().anyMatch((ArrayList<Double> t) -> {
-                return t.contains(clockReference);
-            })){
+            if(TimeLists.values().stream().anyMatch((ArrayList<Double> t) -> t.contains(clockReference))){
                 clock += 0.10;
             }else {
                 HashMap<Integer, ArrayList<Double>> newHours = TripFits(pTripLists.get(tripIndex), clock, pGraph);
                 if(!newHours.isEmpty()){
-                    //queda concatenar ambos datos de las hashmaps y actualizar TimeLists
                     TimeLists.putAll(newHours);
                 }
+                else{
+                    uninsertable.add(pTripLists.get(tripIndex));
+                }
+                tripIndex++;
+                clock += 0.10;
+            }
+        }
+        clock = 0;
+        tripIndex = 0;
+        MAX = uninsertable.size();
+        while(!uninsertable.isEmpty()){
+            if(tripIndex == MAX){
+                tripIndex = 0;
+            }
+            if(clock > InititialData.getSetUpTime()){
+                clock = 0;
+            }
+            double clockReference = clock;
+            if(TimeLists.values().stream().anyMatch((ArrayList<Double> t) -> t.contains(clockReference))){
+                clock += 0.10;
+            }else {
+                HashMap<Integer, ArrayList<Double>> newHoursForUninserted = TripFits(uninsertable.get(tripIndex), clock, pGraph);
+                if(!newHoursForUninserted.isEmpty()){
+                    TimeLists.putAll(newHoursForUninserted);
+                    uninsertable.remove(tripIndex);
+                }
+                tripIndex++;
+                clock += 0.10;
             }
         }
         return  TimeLists;
     }
 
-    private HashMap<Integer, ArrayList<Double>> TripFits(Trip pTrip, double pClock, Graph pGraph){
+    private static HashMap<Integer, ArrayList<Double>> TripFits(Trip pTrip, double pClock, Graph pGraph){
         HashMap<Integer, ArrayList<Double>> TimesOfTrips = new HashMap<>();
         ArrayList<Double> hours = new ArrayList<>();
         hours.add(pClock);
