@@ -25,7 +25,7 @@ public class DroneCounty {
         ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
         System.out.println(DijkstraRoad.fullDijkstraRoadsToString(allRoads));
         
-        System.out.println(Dijkstra.calculateAllTrips(allRoads,1000, 1000));
+        System.out.println(Dijkstra.calculateAllTrips(allRoads,1000, 1000, 2000000));
     }
 
     /*
