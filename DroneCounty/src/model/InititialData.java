@@ -14,8 +14,10 @@ public class InititialData {
     private static int tripQty;
     private static int setUpTime;
     private static int timeRatio;
-    private static int edgeQty; 
-    
+    private static int edgeQty;
+    private static int trackHeight;
+    private static int trackWidth;
+    private static int maxDronePerTrack = (trackHeight*trackWidth)/(Drone.HEIGHT*Drone.WIDTH);
     public static int getNodeQty() {
         return nodeQty;
     }

@@ -15,7 +15,6 @@ import java.util.*;
 public class Vertex<T>{
     
     private final T objectInside;
-    //private ArrayList<Vertex<T>> neighbours;
     
     public Vertex(T objectInside) {
         this.objectInside = objectInside;
@@ -25,13 +24,7 @@ public class Vertex<T>{
     public T getObjectInside() {
         return objectInside;
     }
-    
-    /*
-    public ArrayList<Vertex<T>> getNeighbours() {
-        return neighbours;
-    }
-    */
-    
+        
     @Override
     public int hashCode() {
         int hash = 5;
