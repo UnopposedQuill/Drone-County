@@ -74,7 +74,7 @@ public class Dijkstra {
             //i'll just stream all the vertexes while filtering them in order to skip the A to A jumps
             for(Vertex vertex:getDijkstraRoad.getPath().keySet()){
                 if(!getDijkstraRoad.getInitial().equals(vertex) && getDijkstraRoad.getPath().get(vertex) != null){
-                    result.add(new Trip(getDijkstraRoad.getInitial(), vertex, getDijkstraRoad.getPath().get(vertex), new Track(width, height),tripQtyPerStation));
+                    result.add(new Trip(getDijkstraRoad.getInitial(), vertex, getDijkstraRoad.getPath().get(vertex), getDijkstraRoad.getMinimumDistances().get(vertex), new Track(width, height),tripQtyPerStation));
                     tripAssignmentCounter+=tripQtyPerStation;
                 }
             }

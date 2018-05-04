@@ -6,6 +6,7 @@ public class Trip {
     private Vertex origin;
     private Vertex destination;
     private ArrayList<Vertex> route;
+    Double minimumTimes;
     private Track track;
     private int tripTotalAmount;
     private int tripCounter = 0;
@@ -15,10 +16,11 @@ public class Trip {
     */
     private ArrayList<Timeline> timelines;
 
-    public Trip(Vertex origin, Vertex destination, ArrayList<Vertex> route, Track track, int tripTotalAmount) {
+    public Trip(Vertex origin, Vertex destination, ArrayList<Vertex> route, Double minimumTimes, Track track, int tripTotalAmount) {
         this.origin = origin;
         this.destination = destination;
         this.route = route;
+        this.minimumTimes = minimumTimes;
         this.track = track;
         this.timelines = new ArrayList<>();
         this.tripTotalAmount = tripTotalAmount;
