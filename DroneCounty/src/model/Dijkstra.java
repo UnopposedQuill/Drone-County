@@ -56,7 +56,16 @@ public class Dijkstra {
     
     public static ArrayList<Trip> calculateAllTrips(ArrayList<DijkstraRoad> dijkstraRoads, int height, int width, int tripMaximumQuantity){
         ArrayList<Trip> result = new ArrayList<>();
-        int tripQtyPerStation = tripMaximumQuantity/(dijkstraRoads.size()*(dijkstraRoads.size()-1));
+        int tripAmount = 0;
+        for(DijkstraRoad dijkstraRoad: dijkstraRoads){
+            Vertex vertex = dijkstraRoad.getInitial();
+            for(Vertex v : dijkstraRoad.getPath().keySet()){
+                if(!dijkstraRoad.getInitial().equals(vertex) && dijkstraRoad.getPath().get(vertex) != null){
+                    tripAmount++;
+                }
+            }
+        }
+        int tripQtyPerStation = tripMaximumQuantity/tripAmount;
         int tripAssignmentCounter = 0;
         //for each vertex in the DijkstraRoad i have to add each vertex in the ".getPath()" method
         for (int i = 0; i < dijkstraRoads.size(); i++) {
