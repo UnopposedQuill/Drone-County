@@ -42,6 +42,13 @@ public class Dijkstra {
                 }
             }
         }
+        for (Vertex vertex : predecessors.keySet()) {
+            if(predecessors.get(vertex) != null){
+                ArrayList<Vertex> finalPredecessors = predecessors.get(vertex);
+                finalPredecessors.add(vertex);
+                predecessors.replace(vertex, finalPredecessors);
+            }
+        }
         return new DijkstraRoad(initialVertex, predecessors, minimumDistances);
     }
     
