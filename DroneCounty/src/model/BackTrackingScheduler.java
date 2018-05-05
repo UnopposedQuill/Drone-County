@@ -20,13 +20,8 @@ public class BackTrackingScheduler extends Scheduler{
         for(Trip trip : listTrip){
             Random random = new Random();
             int generatedRandomNumber = (int)(timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).size() * random.nextDouble());
-            int generatedRandomNumberCopy = generatedRandomNumber;
             while(trip.getTripTotalAmount() > 0){
-                while(listTrip.stream().anyMatch((Trip t) -> {
-                    return t.getTimelines().stream().anyMatch((Timeline time) -> {
-                        return time.getStartTime().compareTo(timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).get(generatedRandomNumberCopy)); //To change body of generated lambdas, choose Tools | Templates.
-                    });
-                })){
+                while(!isAvailable(listTrip, timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).get(generatedRandomNumber))){
                     generatedRandomNumber = (int)(timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).size() * random.nextDouble());
                 }
                 Timeline timeline = new Timeline(InitialData.getMaxDronePerTrack(), timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).get(generatedRandomNumber));
@@ -34,10 +29,22 @@ public class BackTrackingScheduler extends Scheduler{
                 ArrayList<Timeline> tripTimeLines = trip.getTimelines();
                 tripTimeLines.add(timeline);
                 trip.setTimelines(tripTimeLines);
-                timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).remove(generatedRandomNumber);
             }
         }
         return listTrip;
     }
     
+    private boolean isAvailable(ArrayList<Trip> listTrip, Double d){
+        
+        for (int i = 0; i < listTrip.size(); i++) {
+            Trip get = listTrip.get(i);
+            for (int j = 0; j < get.getTimelines().size(); j++) {
+                Timeline get1 = get.getTimelines().get(j);
+                if(get1.getStartTime().equals(d)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

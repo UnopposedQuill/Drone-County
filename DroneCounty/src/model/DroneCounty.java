@@ -36,6 +36,9 @@ public class DroneCounty {
         trips = ps.scheduleTrips(trips, ConstantData.TimeLists);
         Long afterPS = System.nanoTime();
         System.out.println(Trip.fullTripToString(trips));
+        
+        trips = Scheduler.calculateAllTrips(allRoads,1000, 1000, InitialData.getTripQty());
+        
         Long beforeBTS = System.nanoTime();
         trips = bts.scheduleTrips(trips, ConstantData.TimeLists);
         Long afterBTS = System.nanoTime();
