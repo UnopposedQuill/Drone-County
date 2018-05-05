@@ -20,7 +20,7 @@ public class DroneCounty {
         // TODO code application logic here
         
         InitialData iData = new InitialData(4, 2000000, 10, 2);
-        
+
         Graph<Station> g = new Graph<>(ConstantData.stations, iData.getNodeQty(), iData.getEdgeQty());
         System.out.println(g.toString());
         
@@ -28,6 +28,7 @@ public class DroneCounty {
         System.out.println(DijkstraRoad.fullDijkstraRoadsToString(allRoads));
         
         System.out.println(ConstantData.getPosibilities(Dijkstra.calculateAllTrips(allRoads,1000, 1000, iData.getTripQty()), g));
+        System.out.println(Scheduler.calculateAllTrips(allRoads,1000, 1000, 20000));
     }
 
     /*

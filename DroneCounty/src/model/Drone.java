@@ -11,7 +11,21 @@ package model;
  * Test commit
  */
 public class Drone{
-    public final int HEIGHT = 3;
-    public final int WIDTH = 2;
-    public final int LENGTH = 2;
+    public static final int HEIGHT = 3;
+    public static final int WIDTH = 2;
+    public static final int LENGTH = 2;
+
+    public int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public int getWIDTH() {
+        return WIDTH;
+    }
+
+    public int getLENGTH() {
+        return LENGTH;
+    }
+    
+    
 }
