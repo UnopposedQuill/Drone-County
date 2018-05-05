@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class DividerScheduler extends Scheduler{
     
     @Override
-    public ArrayList<Trip> scheduleTrips(Graph<Station> G){
+    public ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip){
         return null;
     }
 }

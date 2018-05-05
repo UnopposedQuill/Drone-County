@@ -10,11 +10,8 @@ public class Trip {
     private Track track;
     private int tripTotalAmount;
     private int tripCounter = 0;
-    /*
-    private Date initialTime;
-    private Date endingTime;
-    */
     private ArrayList<Timeline> timelines;
+    private PriorityQueue<Double> timePool;
 
     public Trip(Vertex origin, Vertex destination, ArrayList<Vertex> route, Double minimumTimes, Track track, int tripTotalAmount) {
         this.origin = origin;
@@ -70,17 +67,13 @@ public class Trip {
         this.timelines = timelines;
     }
 
-    
-    
-    /*
-    public Date getInitialTime() {
-        return initialTime;
+    public PriorityQueue<Double> getTimePool() {
+        return timePool;
     }
 
-    public Date getEndingTime() {
-        return endingTime;
+    public void setTimePool(PriorityQueue<Double> timePool) {
+        this.timePool = timePool;
     }
-    */
 
     public void setOrigin(Vertex pOrigin) {
         origin = pOrigin;

@@ -12,7 +12,7 @@ import java.util.*;
  * @author esteban
  */
 public class ConstantData {
-
+    
     public static int VELOCITY = 120;
     public static int TRACK_MAXIMUM_HEIGHT = 1000;
     public static HashMap<Integer, ArrayList<Double>> TimeLists;
