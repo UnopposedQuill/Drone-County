@@ -18,6 +18,8 @@ public class InitialData {
     private static int trackHeight;
     private static int trackWidth;
     private static int maxDronePerTrack = (trackHeight*trackWidth)/(Drone.HEIGHT*Drone.WIDTH);
+    private static int algorithm;
+    
     public static int getNodeQty() {
         return nodeQty;
     }
@@ -42,14 +44,28 @@ public class InitialData {
         return maxDronePerTrack;
     }
 
-    public InitialData(int pNodeQty, int pTripQty, int pSetUpTime, int pEdgeQty, int height, int width){
+    public static int getTrackHeight() {
+        return trackHeight;
+    }
+
+    public static int getTrackWidth() {
+        return trackWidth;
+    }
+
+    public static int getAlgorithm() {
+        return algorithm;
+    }
+    
+    
+    public InitialData(int pNodeQty, int pTripQty, int pSetUpTime, int pEdgeQty, int height, int width, int pTimeRatio, int pAlgorithm){
         nodeQty = pNodeQty;
         tripQty = pTripQty;
         setUpTime = pSetUpTime;
-        //this.timeRatio = timeRatio;  //Debemos hacer la conversion de cuanto equivale 1 segundo en la simulacion
+        timeRatio = pTimeRatio;  //Debemos hacer la conversion de cuanto equivale 1 segundo en la simulacion
         edgeQty = pEdgeQty;
         trackHeight = height;
         trackWidth = width;
         maxDronePerTrack = (trackHeight*trackWidth)/(Drone.HEIGHT*Drone.WIDTH);
+        algorithm = pAlgorithm;
     }
 }
