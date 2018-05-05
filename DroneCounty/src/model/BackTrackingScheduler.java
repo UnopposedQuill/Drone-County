@@ -14,9 +14,13 @@ import java.util.ArrayList;
 public class BackTrackingScheduler extends Scheduler{
     
     @Override
-    public ArrayList<Trip> scheduleTrips(Graph<Station> G){
+    public ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip){
+        for(Trip trip : listTrip ){
+            
+        }
         return null;
     }
+    
     
     private boolean isAvailable(){
         return false;
