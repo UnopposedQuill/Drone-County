@@ -6,7 +6,6 @@ public class Trip {
     private Vertex origin;
     private Vertex destination;
     private ArrayList<Vertex> route;
-    Double minimumTimes;
     private Track track;
     private int tripTotalAmount;
     private int tripCounter = 0;
@@ -17,7 +16,6 @@ public class Trip {
         this.origin = origin;
         this.destination = destination;
         this.route = route;
-        this.minimumTimes = minimumTimes;
         this.track = track;
         this.timelines = new ArrayList<>();
         this.tripTotalAmount = tripTotalAmount;
@@ -89,8 +87,20 @@ public class Trip {
 
     @Override
     public String toString() {
-        return "Trip{" + "Origin=" + origin + ", Target=" + destination + ", Route=" + route + ", Track=" + track + ", Timelines=" + timelines +", TripTotalAmount="+tripTotalAmount+", CurrentTripAmount="+tripCounter+ '}';
+        return "Trip{" + "Origin=" + origin + "\n"
+                + "\tTarget=" + destination + "\n"
+                + "\tRoute=" + route + "\n"
+                + "\tTrack=" + track + "\n"
+                + "\tTimelines=" + timelines +"\n"
+                + "\tTripTotalAmount="+tripTotalAmount+"\n"
+                + "\tCurrentTripAmount="+tripCounter+ '}';
     }
     
-    
+    public static String fullTripToString(ArrayList<Trip> tripsToString){
+        String result = "Trips{\n";
+        for (Trip trip : tripsToString) {
+            result = result.concat("\t"+trip.toString()+"\n\n");
+        }
+        return result;
+    }
 }

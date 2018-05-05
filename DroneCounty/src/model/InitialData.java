@@ -9,7 +9,7 @@ package model;
  *
  * @author Elias
  */
-public class InititialData {
+public class InitialData {
     private static int nodeQty;
     private static int tripQty;
     private static int setUpTime;
