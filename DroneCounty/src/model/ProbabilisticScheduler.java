@@ -23,7 +23,7 @@ public class ProbabilisticScheduler extends Scheduler{
         for(Trip trip : listTrip){
             Random random = new Random();
             int generatedRandomNumber;
-            while(trip.getTripTotalAmount()>InitialData.getMaxDronePerTrack()){
+            while(trip.getTripTotalAmount()> 0){
                 generatedRandomNumber = (int)(timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).size() * random.nextDouble());
                 Timeline timeline = new Timeline(InitialData.getMaxDronePerTrack(), timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).get(generatedRandomNumber));
                 trip.setTripTotalAmount(trip.getTripTotalAmount()-InitialData.getMaxDronePerTrack());
@@ -32,12 +32,6 @@ public class ProbabilisticScheduler extends Scheduler{
                 trip.setTimelines(tripTimeLines);
                 timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).remove(generatedRandomNumber);
             }
-            generatedRandomNumber = (int)(timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).size() * random.nextDouble());
-            Timeline timeline = new Timeline(trip.getTripTotalAmount(), timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).get(generatedRandomNumber));
-            ArrayList<Timeline> tripTimeLines = trip.getTimelines();
-            tripTimeLines.add(timeline);
-            trip.setTimelines(tripTimeLines);
-            timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).remove(generatedRandomNumber);                  
         }
         return listTrip;
     }
