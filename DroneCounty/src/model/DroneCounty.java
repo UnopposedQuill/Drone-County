@@ -26,11 +26,14 @@ public class DroneCounty {
         
         ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
         System.out.println(DijkstraRoad.fullDijkstraRoadsToString(allRoads));
-        
-        System.out.println(ConstantData.getPosibilities(Scheduler.calculateAllTrips(allRoads,1000, 1000, iData.getTripQty()), g));
+        ArrayList<Trip> trips = Scheduler.calculateAllTrips(allRoads,1000, 1000, iData.getTripQty());
+        System.out.println(ConstantData.getPosibilities(trips, g));
         System.out.println(Scheduler.calculateAllTrips(allRoads,1000, 1000, 20000));
         ArrayList<Trip> allTheTrips = Scheduler.calculateAllTrips(allRoads, 1000, 1000, 20000);
         System.out.println(Trip.fullTripToString(allTheTrips));
+        ProbabilisticScheduler a = new ProbabilisticScheduler();
+        a.scheduleTrips(trips, ConstantData.TimeLists);
+        int x=1;
     }
 
     /*

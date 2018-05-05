@@ -6,6 +6,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class BackTrackingScheduler extends Scheduler{
     
     @Override
-    public ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip){
+    public ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip, HashMap<Integer, ArrayList<Double>> timeLists){
         for(Trip trip : listTrip ){
             
         }
