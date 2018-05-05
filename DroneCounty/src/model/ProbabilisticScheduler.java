@@ -5,7 +5,7 @@
  */
 package model;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
@@ -14,12 +14,21 @@ import java.util.ArrayList;
 public class ProbabilisticScheduler extends Scheduler{
     
     /*
-    I was thinking: Why do we have to bring a random choice of EVERY possible combination in order
-    to make this a Probabilistic guy. Actually, he only needs to choose randomly on two different choices, right?
+    Probabilistc algorithm meassurments: our analysis of the algorithm shows that this algorthim runs on a f(n)=7C(n)
+    which means it posesses O(N). 
     */
     
     @Override
-    public ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip){
-        return null;
+    public ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip, HashMap<Integer, ArrayList<Double>> timeLists){
+        for(Trip trip : listTrip){
+            Random random = new Random();
+            int generatedRandomNumber;
+            generatedRandomNumber = (int)(timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).size() * random.nextDouble());
+            Timeline timeline = new Timeline(trip.getTripTotalAmount(), timeLists.get(((Station)trip.getOrigin().getObjectInside()).getName()).get(generatedRandomNumber));
+            ArrayList<Timeline> tripTimeLines = trip.getTimelines();
+            tripTimeLines.add(timeline);
+            trip.setTimelines(tripTimeLines);
+        }
+        return listTrip;
     }
 }

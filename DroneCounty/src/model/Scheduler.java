@@ -13,7 +13,7 @@ import java.util.*;
  */
 public abstract class Scheduler {
     
-    public abstract ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip);
+    public abstract ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip, HashMap<Integer, ArrayList<Double>> timeLists);
     
     //Double simulationTime removed while sergio works on the pooltime   
     public static ArrayList<Trip> calculateAllTrips(ArrayList<DijkstraRoad> dijkstraRoads, int height, int width, int tripMaximumQuantity){

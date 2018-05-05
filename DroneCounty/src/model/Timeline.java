@@ -10,26 +10,18 @@ package model;
  * @author esteban
  */
 public class Timeline {
+    /*
     private Vertex origin;
     private Vertex destination;
+    */
     private int droneQuantity;
     private Double startTime;
-    private Double endingTime;
+    //private Double endingTime;
 
-    public Vertex getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(Vertex origin) {
-        this.origin = origin;
-    }
-
-    public Vertex getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Vertex destination) {
-        this.destination = destination;
+    public Timeline(int droneQuantity, Double startTime) {
+        this.droneQuantity = droneQuantity;
+        this.startTime = startTime;
+        //this.endingTime = endingTime;
     }
 
     public int getDroneQuantity() {
@@ -48,6 +40,7 @@ public class Timeline {
         this.startTime = startTime;
     }
 
+    /*
     public Double getEndingTime() {
         return endingTime;
     }
@@ -55,6 +48,6 @@ public class Timeline {
     public void setEndingTime(Double endingTime) {
         this.endingTime = endingTime;
     }
-    
+    */
     
 }
