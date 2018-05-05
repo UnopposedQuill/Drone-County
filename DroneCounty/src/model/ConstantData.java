@@ -15,7 +15,7 @@ public class ConstantData {
     
     public static int VELOCITY = 120;
     public static int TRACK_MAXIMUM_HEIGHT = 1000;
-    public static HashMap<Integer, ArrayList<Double>> TimeLists;
+    public static HashMap<Integer, ArrayList<Double>> TimeLists = new HashMap<>();
     public static Station[] stations = {
             new Station(90.0, 70.0, 1), new Station(250.0, 60.0, 2), new Station(370.0, 90.0, 3), new Station(450.0, 40.0, 4), new Station(610.0, 60.0, 5),
             new Station(240.0, 150.0, 6), new Station(380.0, 170.0, 7), new Station(510.0, 160.0, 8), new Station(620.0, 130.0, 9), new Station(170.0, 260.0, 10),
@@ -25,7 +25,7 @@ public class ConstantData {
             new Station(60.0, 280.0, 26), new Station(640.0, 600.0, 27), new Station(100.0, 630.0, 28), new Station(440.0, 230.0, 29), new Station(310.0, 440.0, 30)
     };
     
-    public static HashMap getPosibilities(ArrayList<Trip> pTripLists, Graph pGraph){
+    public static HashMap<Integer, ArrayList<Double>> getPosibilities(ArrayList<Trip> pTripLists, Graph<Station> pGraph){
         double clock = 0;
         int tripIndex = 0;
         int MAX = pTripLists.size();
@@ -36,12 +36,21 @@ public class ConstantData {
                 tripIndex = 0;
             }
             double clockReference = clock;
+            
             if(TimeLists.values().stream().anyMatch((ArrayList<Double> t) -> t.contains(clockReference))){
                 clock += 0.10;
             }else {
                 HashMap<Integer, ArrayList<Double>> newHours = TripFits(pTripLists.get(tripIndex), clock, pGraph);
                 if(!newHours.isEmpty()){
-                    TimeLists.putAll(newHours);
+                    for(Integer key : newHours.keySet()){
+                        if(TimeLists.get(key) != null){
+                            ArrayList<Double> valueUpdated = TimeLists.get(key);
+                            valueUpdated.addAll(newHours.get(key));
+                            TimeLists.replace(key, valueUpdated);
+                        }else{
+                            TimeLists.put(key, newHours.get(key));
+                        }
+                    }
                 }
                 else{
                     uninsertable.add(pTripLists.get(tripIndex));
@@ -76,17 +85,31 @@ public class ConstantData {
         return TimeLists;
     }
 
-    private static HashMap<Integer, ArrayList<Double>> TripFits(Trip pTrip, double pClock, Graph pGraph){
+    private static HashMap<Integer, ArrayList<Double>> TripFits(Trip pTrip, double pClock, Graph<Station> pGraph){
+        HashMap<Vertex, Double> minimumDistancesOfTrips;
         HashMap<Integer, ArrayList<Double>> TimesOfTrips = new HashMap<>();
         ArrayList<Double> hours = new ArrayList<>();
         hours.add(pClock);
         TimesOfTrips.put(((Station) pTrip.getRoute().get(0).getObjectInside()).getName(), hours);
         boolean fitsFine = true;
         ArrayList<Double> timeForDestiny = new ArrayList<>();
-        for(int routeIndex = 0; routeIndex < (pTrip.getRoute().size()) ; routeIndex++){
-            ArrayList<DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(pGraph);
-            for (DijkstraRoad path : allRoads) {
-                if (path.getInitial() == pTrip.getRoute().get(routeIndex)) {
+        ArrayList<DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(pGraph);
+        pTrip.setDistances(allRoads);
+        for(int routeIndex = 0; routeIndex < (pTrip.getRoute().size()-1) ; routeIndex++){
+            timeForDestiny.add(((pTrip.getDistancesOfRoute().get(routeIndex) / 120) * 3600)+pClock);
+            if( TimesOfTrips.get(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName()) != null){
+                hours = TimesOfTrips.get(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName());
+                if(!hours.contains(timeForDestiny)){
+                    hours.addAll((ArrayList<Double>) timeForDestiny.clone());
+                }
+                TimesOfTrips.replace(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName(), hours);
+            }else{
+                TimesOfTrips.put(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName(), (ArrayList<Double>) timeForDestiny.clone());
+            }
+            timeForDestiny.clear();
+
+                /*
+                if (path.getInitial() == pTrip.getRoute().get(routeIndex) && routeIndex+1 < pTrip.getRoute().size()) {
                     timeForDestiny.add((path.getMinimumDistances().get(pTrip.getRoute().get(routeIndex + 1)) / 120) * 3600);
                     try {
                         if (TimeLists.containsValue(timeForDestiny)) {
@@ -94,17 +117,23 @@ public class ConstantData {
                             fitsFine = false;
                             break;
                         } else {
-                            hours = TimesOfTrips.get(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName());
-                            hours.addAll(timeForDestiny);
-                            TimesOfTrips.put(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName(), hours);
+                            if( TimesOfTrips.get(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName()) != null){
+                                hours = TimesOfTrips.get(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName());
+                                for(double time : timeForDestiny){
+                                    hours.add(time);
+                                }
+                                TimesOfTrips.put(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName(), hours);
+                            }else{
+                                TimesOfTrips.put(((Station) pTrip.getRoute().get(routeIndex + 1).getObjectInside()).getName(), timeForDestiny);
+                                //timeForDestiny.clear();
+                            }
                         }
                     } catch (Exception e) {
                         TimesOfTrips.clear();
                         fitsFine = false;
                         break;
                     }
-                }
-            }
+                }*/
         }
         if(fitsFine)
             return TimesOfTrips;

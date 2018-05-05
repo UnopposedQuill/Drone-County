@@ -6,6 +6,7 @@ public class Trip {
     private Vertex origin;
     private Vertex destination;
     private ArrayList<Vertex> route;
+    private ArrayList<Double> distancesOfRoute = new ArrayList<>();
     private Track track;
     private int tripTotalAmount;
     private int tripCounter = 0;
@@ -21,6 +22,25 @@ public class Trip {
         this.tripTotalAmount = tripTotalAmount;
     }
     
+    public void setDistances(ArrayList<DijkstraRoad> allroads){
+        int max = route.size();
+        Vertex nodeOfRoute;
+        for(int i = 0; i < max-1; i++){
+            nodeOfRoute = route.get(i);
+            for(DijkstraRoad road : allroads){
+                if(road.getInitial().equals(nodeOfRoute)){
+                    double x = road.getMinimumDistances().get(route.get(i+1));
+                    distancesOfRoute.add(x);
+                    break;
+                }
+            }
+        }
+    }
+
+    public ArrayList<Double> getDistancesOfRoute() {
+        return distancesOfRoute;
+    }
+
     public Vertex getOrigin() {
         return origin;
     }
