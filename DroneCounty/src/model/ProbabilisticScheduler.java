@@ -18,6 +18,13 @@ public class ProbabilisticScheduler extends Scheduler{
     which means it posesses O(N). 
     */
     
+    /**
+     * This is a Probabilistic version of the Scheduler.
+     * It runs on a O(N) where N = AmountOfTrips * (DroneCountPerTrip/MaximumDronesPerTrack)
+     * @param listTrip
+     * @param timeLists
+     * @return 
+     */
     @Override
     public ArrayList<Trip> scheduleTrips(ArrayList<Trip> listTrip, HashMap<Integer, ArrayList<Double>> timeLists){
         for(Trip trip : listTrip){
