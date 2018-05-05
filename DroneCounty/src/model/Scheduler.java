@@ -33,12 +33,10 @@ public abstract class Scheduler {
             DijkstraRoad getDijkstraRoad = dijkstraRoads.get(i);
             //in this project we won't want to go from A to A, just specifications
             //i'll just stream all the vertexes while filtering them in order to skip the A to A jumps
-            for(Vertex vertex:getDijkstraRoad.getPath().keySet()){
-                if(!getDijkstraRoad.getInitial().equals(vertex) && getDijkstraRoad.getPath().get(vertex) != null){
-                    result.add(new Trip(getDijkstraRoad.getInitial(), vertex, getDijkstraRoad.getPath().get(vertex), new Track(width, height),tripQtyPerTrip));
-                    tripAssignmentCounter+=tripQtyPerTrip;
-                }
-            }
+            tripAssignmentCounter = getDijkstraRoad.getPath().keySet().stream().filter((vertex) -> (!getDijkstraRoad.getInitial().equals(vertex) && getDijkstraRoad.getPath().get(vertex) != null)).map((vertex) -> {
+                result.add(new Trip(getDijkstraRoad.getInitial(), vertex, getDijkstraRoad.getPath().get(vertex), new Track(width, height),tripQtyPerTrip));
+                return vertex;
+            }).map((_item) -> tripQtyPerTrip).reduce(tripAssignmentCounter, Integer::sum);
         }
         if(tripAssignmentCounter>tripMaximumQuantity){
             Random random = new Random();
