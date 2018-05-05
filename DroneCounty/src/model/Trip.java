@@ -106,8 +106,20 @@ public class Trip {
 
     @Override
     public String toString() {
-        return "Trip{" + "Origin=" + origin + ", Target=" + destination + ", Route=" + route + ", Track=" + track + ", Timelines=" + timelines +", TripTotalAmount="+tripTotalAmount+", CurrentTripAmount="+tripCounter+ '}';
+        return "Trip{" + "Origin=" + origin + "\n"
+                + "\tTarget=" + destination + "\n"
+                + "\tRoute=" + route + "\n"
+                + "\tTrack=" + track + "\n"
+                + "\tTimelines=" + timelines +"\n"
+                + "\tTripTotalAmount="+tripTotalAmount+"\n"
+                + "\tCurrentTripAmount="+tripCounter+ '}';
     }
     
-    
+    public static String fullTripToString(ArrayList<Trip> tripsToString){
+        String result = "Trips{\n";
+        for (Trip trip : tripsToString) {
+            result = result.concat("\t"+trip.toString()+"\n\n");
+        }
+        return result;
+    }
 }

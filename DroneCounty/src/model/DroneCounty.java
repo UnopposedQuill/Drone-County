@@ -29,6 +29,8 @@ public class DroneCounty {
         
         System.out.println(ConstantData.getPosibilities(Dijkstra.calculateAllTrips(allRoads,1000, 1000, iData.getTripQty()), g));
         System.out.println(Scheduler.calculateAllTrips(allRoads,1000, 1000, 20000));
+        ArrayList<Trip> allTheTrips = Scheduler.calculateAllTrips(allRoads, 1000, 1000, 20000);
+        System.out.println(Trip.fullTripToString(allTheTrips));
     }
 
     /*
