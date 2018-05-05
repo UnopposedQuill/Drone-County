@@ -58,8 +58,7 @@ public class Dijkstra {
         ArrayList<Trip> result = new ArrayList<>();
         int tripAmount = 0;
         for(DijkstraRoad dijkstraRoad: dijkstraRoads){
-            Vertex vertex = dijkstraRoad.getInitial();
-            for(Vertex v : dijkstraRoad.getPath().keySet()){
+            for(Vertex vertex : dijkstraRoad.getPath().keySet()){
                 if(!dijkstraRoad.getInitial().equals(vertex) && dijkstraRoad.getPath().get(vertex) != null){
                     tripAmount++;
                 }
