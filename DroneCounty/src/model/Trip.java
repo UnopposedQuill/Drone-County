@@ -13,7 +13,7 @@ public class Trip {
     private ArrayList<Timeline> timelines;
     private PriorityQueue<Double> timePool;
 
-    public Trip(Vertex origin, Vertex destination, ArrayList<Vertex> route, Double minimumTimes, Track track, int tripTotalAmount) {
+    public Trip(Vertex origin, Vertex destination, ArrayList<Vertex> route, Track track, int tripTotalAmount) {
         this.origin = origin;
         this.destination = destination;
         this.route = route;
