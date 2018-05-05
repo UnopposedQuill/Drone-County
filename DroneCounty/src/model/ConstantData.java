@@ -31,7 +31,7 @@ public class ConstantData {
         int MAX = pTripLists.size();
         ArrayList<Trip> uninsertable = new ArrayList<>();
 
-        while(clock < InititialData.getSetUpTime()){
+        while(clock < InitialData.getSetUpTime()){
             if(tripIndex == MAX){
                 tripIndex = 0;
             }
@@ -57,7 +57,7 @@ public class ConstantData {
             if(tripIndex == MAX){
                 tripIndex = 0;
             }
-            if(clock > InititialData.getSetUpTime()){
+            if(clock > InitialData.getSetUpTime()){
                 clock = 0;
             }
             double clockReference = clock;

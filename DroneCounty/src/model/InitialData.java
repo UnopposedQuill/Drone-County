@@ -38,7 +38,7 @@ public class InitialData {
         return edgeQty;
     }
 
-    public InititialData(int pNodeQty, int pTripQty, int pSetUpTime, int pEdgeQty) {
+    public InitialData(int pNodeQty, int pTripQty, int pSetUpTime, int pEdgeQty) {
         nodeQty = pNodeQty;
         tripQty = pTripQty;
         setUpTime = pSetUpTime;
