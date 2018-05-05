@@ -19,7 +19,7 @@ public class DroneCounty {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        InitialData iData = new InitialData(4, 2000000, 10, 2);
+        InitialData iData = new InitialData(4, 2000000, 100, 2);
 
         Graph<Station> g = new Graph<>(ConstantData.stations, iData.getNodeQty(), iData.getEdgeQty());
         System.out.println(g.toString());
@@ -27,7 +27,7 @@ public class DroneCounty {
         ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
         System.out.println(DijkstraRoad.fullDijkstraRoadsToString(allRoads));
         
-        System.out.println(ConstantData.getPosibilities(Dijkstra.calculateAllTrips(allRoads,1000, 1000, iData.getTripQty()), g));
+        System.out.println(ConstantData.getPosibilities(Scheduler.calculateAllTrips(allRoads,1000, 1000, iData.getTripQty()), g));
         System.out.println(Scheduler.calculateAllTrips(allRoads,1000, 1000, 20000));
         ArrayList<Trip> allTheTrips = Scheduler.calculateAllTrips(allRoads, 1000, 1000, 20000);
         System.out.println(Trip.fullTripToString(allTheTrips));

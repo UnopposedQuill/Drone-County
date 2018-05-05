@@ -34,8 +34,14 @@ public class Trip {
                     break;
                 }
             }
-
-
+        }
+        nodeOfRoute = route.get(max-1);
+        for(DijkstraRoad road : allroads){
+            if(road.getInitial().equals(nodeOfRoute)){
+                double x = road.getMinimumDistances().get(destination);
+                distancesOfRoute.add(x);
+                break;
+            }
         }
 
     }
