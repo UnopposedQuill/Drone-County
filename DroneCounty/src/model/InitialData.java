@@ -9,7 +9,7 @@ package model;
  *
  * @author Elias
  */
-public class InititialData {
+public class InitialData {
     private static int nodeQty;
     private static int tripQty;
     private static int setUpTime;
@@ -36,7 +36,7 @@ public class InititialData {
         return edgeQty;
     }
 
-    public InititialData(int pNodeQty, int pTripQty, int pSetUpTime, int pEdgeQty) {
+    public InitialData(int pNodeQty, int pTripQty, int pSetUpTime, int pEdgeQty) {
         nodeQty = pNodeQty;
         tripQty = pTripQty;
         setUpTime = pSetUpTime;

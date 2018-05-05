@@ -19,13 +19,15 @@ public class DroneCounty {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Graph<Station> g = new Graph<>(ConstantData.stations, 12, 7);
+        InitialData iData = new InitialData(4, 2000000, 10, 2);
+        
+        Graph<Station> g = new Graph<>(ConstantData.stations, iData.getNodeQty(), iData.getEdgeQty());
         System.out.println(g.toString());
         
         ArrayList <DijkstraRoad> allRoads = Dijkstra.calculateAllRoads(g);
         System.out.println(DijkstraRoad.fullDijkstraRoadsToString(allRoads));
         
-        System.out.println(Dijkstra.calculateAllTrips(allRoads,1000, 1000, 2000000));
+        System.out.println(ConstantData.getPosibilities(Dijkstra.calculateAllTrips(allRoads,1000, 1000, iData.getTripQty()), g));
     }
 
     /*
